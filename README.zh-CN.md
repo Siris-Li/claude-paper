@@ -59,7 +59,7 @@
 
 **就这样！** 插件将自动：
 - 安装所有依赖项（用于 PDF 处理的 pdf-parse）
-- 在 `~/claude-papers/` 创建论文目录
+- 在 `./.claude/claude-papers/` 创建论文目录
 - 初始化搜索索引
 - 安装网页查看器依赖项
 
@@ -121,10 +121,10 @@ Claude 将自动触发学习工作流程并：
 
 ## 论文存储结构
 
-论文按 `~/claude-papers/papers/{paper-slug}/` 组织：
+论文按 `./.claude/claude-papers/papers/{paper-slug}/` 组织：
 
 ```
-~/claude-papers/
+./.claude/claude-papers/
 ├── papers/
 │   └── {paper-slug}/
 │       ├── paper.pdf                     # 原始 PDF 文件
@@ -227,7 +227,7 @@ npm run build
 
 无需配置！插件使用合理的默认值：
 
-- **论文目录**: `~/claude-papers/`
+- **论文目录**: `./.claude/claude-papers/`
 - **网页查看器端口**: `5815`
 - **内容限制**: `50,000` 字符（带智能截断）
 

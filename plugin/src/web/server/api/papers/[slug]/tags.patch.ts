@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { homedir } from 'os'
+import { getIndexPath, getPaperDir } from '../../../utils/papersDir'
 
 export default defineEventHandler(async (event) => {
   const slug = getRouterParam(event, 'slug')
@@ -27,10 +27,9 @@ export default defineEventHandler(async (event) => {
     .filter(Boolean)
 
   try {
-    const papersDir = path.join(homedir(), 'claude-papers/papers')
-    const paperDir = path.join(papersDir, slug)
+    const paperDir = getPaperDir(slug)
     const metaPath = path.join(paperDir, 'meta.json')
-    const indexPath = path.join(homedir(), 'claude-papers/index.json')
+    const indexPath = getIndexPath()
 
     if (!fs.existsSync(paperDir)) {
       throw createError({

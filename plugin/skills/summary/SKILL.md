@@ -91,13 +91,13 @@ Output includes:
 
 Save to:
 ```
-~/claude-papers/papers/{paper-slug}/meta.json
+./.claude/claude-papers/papers/{paper-slug}/meta.json
 ```
 
 Copy original PDF:
 
 ```bash
-cp <pdf-path> ~/claude-papers/papers/{paper-slug}/paper.pdf
+cp <pdf-path> ./.claude/claude-papers/papers/{paper-slug}/paper.pdf
 ```
 
 ---
@@ -107,7 +107,7 @@ cp <pdf-path> ~/claude-papers/papers/{paper-slug}/paper.pdf
 Create the paper folder:
 
 ```bash
-mkdir -p ~/claude-papers/papers/{paper-slug}
+mkdir -p ./.claude/claude-papers/papers/{paper-slug}
 ```
 
 Generate **quick-summary.md** with the following structure:
@@ -189,7 +189,7 @@ Append new entry to the papers array:
 
 **IMPORTANT**: The index.json file must be located at:
 ```
-~/claude-papers/index.json
+./.claude/claude-papers/index.json
 ```
 
 ---
@@ -216,7 +216,7 @@ After generating the summary:
    - "Would you like me to explain any section in more detail?"
 
 3. **File location reminder:**
-   - Summary saved to: `~/claude-papers/papers/{paper-slug}/quick-summary.md`
+   - Summary saved to: `./.claude/claude-papers/papers/{paper-slug}/quick-summary.md`
    - Web UI available at: `http://localhost:5815`
 
 ---

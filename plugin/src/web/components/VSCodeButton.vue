@@ -12,28 +12,24 @@ const props = defineProps({
   }
 })
 
-const homedir = ref(null)
+const papersDir = ref(null)
 
-// Fetch homedir on mount
 onMounted(async () => {
   try {
     const data = await $fetch('/api/system/homedir')
-    homedir.value = data.homedir
+    papersDir.value = data.papersDir
   } catch (e) {
-    console.error('Failed to get homedir:', e)
-    // Fallback
-    homedir.value = '/Users/' + (navigator.userAgent.includes('Mac') ? Intl.DateTimeFormat().resolvedOptions().timeZone.split('/')[1] || 'user' : 'user')
+    console.error('Failed to get papers directory:', e)
   }
 })
 
 const openInVSCode = () => {
-  if (!homedir.value) {
-    alert('Unable to determine home directory')
+  if (!papersDir.value) {
+    alert('Unable to determine papers directory')
     return
   }
 
-  // Replace ~ with actual home directory
-  const expandedPath = props.path.replace('~', homedir.value)
+  const expandedPath = props.path.replace('${PAPERS_DIR}', papersDir.value)
   window.location.href = `vscode://file${expandedPath}`
 }
 </script>

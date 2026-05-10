@@ -59,7 +59,7 @@ Install from the Claude Code marketplace:
 
 **That's it!** The plugin will automatically:
 - Install all dependencies (pdf-parse for PDF processing)
-- Create the papers directory at `~/claude-papers/`
+- Create the papers directory at `./.claude/claude-papers/`
 - Initialize the search index
 - Install web viewer dependencies
 
@@ -121,10 +121,10 @@ Opens the interactive web interface at **http://localhost:5815** where you can:
 
 ## Paper Storage Structure
 
-Papers are organized in `~/claude-papers/papers/{paper-slug}/`:
+Papers are organized in `./.claude/claude-papers/papers/{paper-slug}/`:
 
 ```
-~/claude-papers/
+./.claude/claude-papers/
 ├── papers/
 │   └── {paper-slug}/
 │       ├── paper.pdf                     # Original PDF file
@@ -227,7 +227,7 @@ npm run build
 
 No configuration required! The plugin uses sensible defaults:
 
-- **Papers directory**: `~/claude-papers/`
+- **Papers directory**: `./.claude/claude-papers/`
 - **Web viewer port**: `5815`
 - **Content limit**: `50,000` characters (with intelligent truncation)
 

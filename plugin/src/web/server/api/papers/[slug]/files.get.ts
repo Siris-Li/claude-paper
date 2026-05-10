@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { homedir } from 'os'
+import { getPaperDir } from '../../../utils/papersDir'
 
 interface FileNode {
   name: string
@@ -58,7 +58,7 @@ export default defineEventHandler((event) => {
   }
 
   try {
-    const paperDir = path.join(homedir(), 'claude-papers/papers', slug)
+    const paperDir = getPaperDir(slug)
 
     if (!fs.existsSync(paperDir)) {
       throw createError({

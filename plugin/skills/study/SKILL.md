@@ -102,13 +102,13 @@ Output includes:
 Save to:
 
 ```
-~/claude-papers/papers/{paper-slug}/meta.json
+./.claude/claude-papers/papers/{paper-slug}/meta.json
 ```
 
 Copy original PDF:
 
 ```bash
-cp <pdf-path> ~/claude-papers/papers/{paper-slug}/paper.pdf
+cp <pdf-path> ./.claude/claude-papers/papers/{paper-slug}/paper.pdf
 ```
 
 Fallback:
@@ -171,8 +171,8 @@ Examples:
 
 Persist these 2 tags in both locations:
 
-* `~/claude-papers/papers/{paper-slug}/meta.json` as `tags`
-* `~/claude-papers/index.json` entry as `tags`
+* `./.claude/claude-papers/papers/{paper-slug}/meta.json` as `tags`
+* `./.claude/claude-papers/index.json` entry as `tags`
 
 ---
 
@@ -181,7 +181,7 @@ Persist these 2 tags in both locations:
 Create folder:
 
 ```
-~/claude-papers/papers/{paper-slug}/
+./.claude/claude-papers/papers/{paper-slug}/
 ```
 
 ---
@@ -287,13 +287,13 @@ At least one runnable demo must be created.
 
 **All code demos must be placed in:**
 ```
-~/claude-papers/papers/{paper-slug}/code/
+./.claude/claude-papers/papers/{paper-slug}/code/
 ```
 
 Create the code directory first:
 
 ```bash
-mkdir -p ~/claude-papers/papers/{paper-slug}/code
+mkdir -p ./.claude/claude-papers/papers/{paper-slug}/code
 ```
 
 Guidelines:
@@ -327,7 +327,7 @@ Create a single self-contained HTML file for interactively exploring the paper's
 
 **Output path:**
 ```
-~/claude-papers/papers/{paper-slug}/index.html
+./.claude/claude-papers/papers/{paper-slug}/index.html
 ```
 
 ## Requirements
@@ -347,11 +347,11 @@ Every interactive control (slider, toggle, dropdown) should visibly change the v
 # Step 6: Extract Images
 
 ```bash
-mkdir -p ~/claude-papers/papers/{paper-slug}/images
+mkdir -p ./.claude/claude-papers/papers/{paper-slug}/images
 
 python3 ${CLAUDE_PLUGIN_ROOT}/skills/study/scripts/extract-images.py \
   paper.pdf \
-  ~/claude-papers/papers/{paper-slug}/images
+  ./.claude/claude-papers/papers/{paper-slug}/images
 ```
 
 Rename key images descriptively:
@@ -390,7 +390,7 @@ Append new entry to the papers array:
 ```
 **IMPORTANT**: The index.json file must be located at:
 ```
-~/claude-papers/index.json
+./.claude/claude-papers/index.json
 ```
 
 ---

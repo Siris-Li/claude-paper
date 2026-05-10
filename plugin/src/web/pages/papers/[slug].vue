@@ -408,7 +408,7 @@ const renderedContent = computed(() => {
   return fileContent.value
 })
 
-const paperPath = computed(() => `~/claude-papers/papers/${slug}`)
+const paperPath = computed(() => `\${PAPERS_DIR}/papers/${slug}`)
 
 useHead({
   title: paper.value ? `${paper.value.title} - Research Library` : 'Paper - Research Library'

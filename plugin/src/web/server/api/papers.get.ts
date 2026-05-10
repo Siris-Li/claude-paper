@@ -1,10 +1,9 @@
 import fs from 'fs'
-import path from 'path'
-import { homedir } from 'os'
+import { getIndexPath } from '../utils/papersDir'
 
 export default defineEventHandler(() => {
   try {
-    const indexPath = path.join(homedir(), 'claude-papers/index.json')
+    const indexPath = getIndexPath()
 
     if (!fs.existsSync(indexPath)) {
       return []

@@ -13,17 +13,16 @@ This skill starts the Claude Paper web viewer using the production Nuxt.js serve
 
 Check if web dependencies are installed (with corruption check):
 ```bash
-if [ ! -f "${CLAUDE_PLUGIN_ROOT}/src/web/node_modules/.package-lock.json" ] || [ ! -d "${CLAUDE_PLUGIN_ROOT}/src/web/node_modules/@nuxt" ]; then
-  if [ ! -d "${CLAUDE_PLUGIN_ROOT}/src/web/node_modules/@nuxt" ]; then
+WEB_DIR="${CLAUDE_PLUGIN_ROOT}/src/web"
+
+if [ ! -f "${WEB_DIR}/node_modules/.package-lock.json" ] || [ ! -d "${WEB_DIR}/node_modules/@nuxt" ]; then
+  if [ ! -d "${WEB_DIR}/node_modules/@nuxt" ]; then
     echo "ERROR: node_modules is corrupted, performing clean install..."
-    cd "${CLAUDE_PLUGIN_ROOT}/src/web"
-    rm -rf node_modules package-lock.json
-    npm install
+    (cd "${WEB_DIR}" && rm -rf node_modules package-lock.json && npm install)
     echo "Web dependencies installed!"
   else
     echo "First run - installing web dependencies..."
-    cd "${CLAUDE_PLUGIN_ROOT}/src/web"
-    npm install
+    (cd "${WEB_DIR}" && npm install)
     echo "Web dependencies installed!"
   fi
 else
@@ -35,18 +34,17 @@ fi
 
 Build if needed or if plugin version changed:
 ```bash
-cd ${CLAUDE_PLUGIN_ROOT}/src/web
-
+WEB_DIR="${CLAUDE_PLUGIN_ROOT}/src/web"
 PLUGIN_VERSION=$(node -e "console.log(require('${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json').version)")
 BUILD_VERSION=""
-if [ -f ".output/.build-version" ]; then
-  BUILD_VERSION=$(cat ".output/.build-version")
+if [ -f "${WEB_DIR}/.output/.build-version" ]; then
+  BUILD_VERSION=$(cat "${WEB_DIR}/.output/.build-version")
 fi
 
-if [ ! -f ".output/server/index.mjs" ] || [ "$PLUGIN_VERSION" != "$BUILD_VERSION" ]; then
+if [ ! -f "${WEB_DIR}/.output/server/index.mjs" ] || [ "$PLUGIN_VERSION" != "$BUILD_VERSION" ]; then
   echo "Building production server (v${PLUGIN_VERSION})..."
-  npm run build
-  echo "$PLUGIN_VERSION" > .output/.build-version
+  (cd "${WEB_DIR}" && npm run build)
+  echo "$PLUGIN_VERSION" > "${WEB_DIR}/.output/.build-version"
   echo "Build complete!"
 else
   echo "Production build is up to date (v${BUILD_VERSION})"
@@ -58,10 +56,11 @@ fi
 Ensure port 5815 is available (with version check restart):
 ```bash
 # Get version info for comparison
+WEB_DIR="${CLAUDE_PLUGIN_ROOT}/src/web"
 PLUGIN_VERSION=$(node -e "console.log(require('${CLAUDE_PLUGIN_ROOT}/.claude-plugin/plugin.json').version)")
 BUILD_VERSION=""
-if [ -f ".output/.build-version" ]; then
-  BUILD_VERSION=$(cat ".output/.build-version")
+if [ -f "${WEB_DIR}/.output/.build-version" ]; then
+  BUILD_VERSION=$(cat "${WEB_DIR}/.output/.build-version")
 fi
 
 if lsof -i :5815 > /dev/null 2>&1; then
@@ -92,7 +91,16 @@ fi
 
 Start the server in background:
 ```bash
-PORT=5815 node .output/server/index.mjs &
+PROJECT_DIR="${PWD}"
+WEB_DIR="${CLAUDE_PLUGIN_ROOT}/src/web"
+CLAUDE_PAPER_DIR="${PROJECT_DIR}/.claude/claude-papers"
+mkdir -p "${CLAUDE_PAPER_DIR}/papers"
+if [ ! -f "${CLAUDE_PAPER_DIR}/index.json" ]; then
+  echo '{"papers": []}' > "${CLAUDE_PAPER_DIR}/index.json"
+fi
+CLAUDE_PAPER_DIR_NODE=$(node -e "console.log(require('path').resolve(process.argv[1]))" "${CLAUDE_PAPER_DIR}")
+
+(cd "${WEB_DIR}" && CLAUDE_PAPER_DIR="${CLAUDE_PAPER_DIR_NODE}" PORT=5815 node .output/server/index.mjs) &
 SERVER_PID=$!
 
 # Save PID for later cleanup
