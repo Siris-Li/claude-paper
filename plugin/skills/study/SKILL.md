@@ -232,28 +232,14 @@ Create folder:
 
 ---
 
-### qa.md
+### measurement.md
 
-15 questions:
-
-* 5 basic
-* 5 intermediate
-* 5 advanced
-
-Use this format:
-
-```markdown
-### Question
-
-<details>
-<summary>Answer</summary>
-
-Detailed explanation.
-
-</details>
-
----
-```
+* What experiments were conducted and what hypotheses do they test?
+* Experimental setup: datasets, baselines, evaluation metrics
+* Environment and configuration: hardware, software, hyperparameters, training details
+* Key results: quantitative comparisons, ablation studies, statistical significance
+* What conclusions can be drawn from the results?
+* Any surprising or counter-intuitive findings
 
 ---
 
