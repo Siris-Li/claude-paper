@@ -209,6 +209,17 @@ Create folder:
 
 ---
 
+### challenge.md
+
+* What problem does this paper address?
+* Why is this problem hard? What constraints make naive solutions fail?
+* What prior approaches existed and why were they insufficient?
+* Present the problem clearly enough that the reader can think about it independently
+* Include 2-3 thought prompts: "Before reading the solution, consider: how would you ...?"
+* Do NOT reveal the paper's solution — that belongs in insights.md
+
+---
+
 ### insights.md (Most Important)
 
 * Core idea explained plainly
