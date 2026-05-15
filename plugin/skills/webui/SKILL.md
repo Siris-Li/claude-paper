@@ -93,7 +93,7 @@ Start the server in background:
 ```bash
 PROJECT_DIR="${PWD}"
 WEB_DIR="${CLAUDE_PLUGIN_ROOT}/src/web"
-CLAUDE_PAPER_DIR="${PROJECT_DIR}/.claude/claude-papers"
+CLAUDE_PAPER_DIR="${PROJECT_DIR}/.skill/claude-papers"
 mkdir -p "${CLAUDE_PAPER_DIR}/papers"
 if [ ! -f "${CLAUDE_PAPER_DIR}/index.json" ]; then
   echo '{"papers": []}' > "${CLAUDE_PAPER_DIR}/index.json"

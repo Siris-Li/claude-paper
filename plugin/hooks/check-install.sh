@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PAPERS_DIR="${PWD}/.claude/claude-papers"
+PAPERS_DIR="${PWD}/.skill/claude-papers"
 
 # Only create basic directory structure (fast)
 if [ ! -d "$PAPERS_DIR" ]; then
