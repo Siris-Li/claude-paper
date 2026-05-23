@@ -168,9 +168,6 @@ claude-paper/
 │   │           └── extract-images.py  # Image extraction
 │   ├── commands/
 │   │   └── webui.md                # /webui command
-│   ├── hooks/
-│   │   ├── hooks.json              # Session lifecycle hooks
-│   │   └── check-install.sh        # Installation verification
 │   ├── src/
 │   │   └── web/                    # Nuxt.js web viewer
 │   │       ├── components/         # Vue components

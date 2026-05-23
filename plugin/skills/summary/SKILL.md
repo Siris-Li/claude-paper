@@ -89,6 +89,12 @@ Output includes:
 - githubLinks
 - codeLinks
 
+Create the paper folder:
+
+```bash
+mkdir -p ./.skill/claude-papers/papers/{paper-slug}
+```
+
 Save to:
 ```
 ./.skill/claude-papers/papers/{paper-slug}/meta.json
@@ -103,12 +109,6 @@ cp <pdf-path> ./.skill/claude-papers/papers/{paper-slug}/paper.pdf
 ---
 
 # Step 2: Generate Quick Summary
-
-Create the paper folder:
-
-```bash
-mkdir -p ./.skill/claude-papers/papers/{paper-slug}
-```
 
 Generate **quick-summary.md** with the following structure:
 

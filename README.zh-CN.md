@@ -168,9 +168,6 @@ claude-paper/
 │   │           └── extract-images.py  # 图像提取
 │   ├── commands/
 │   │   └── webui.md                # /webui 命令
-│   ├── hooks/
-│   │   ├── hooks.json              # 会话生命周期钩子
-│   │   └── check-install.sh        # 安装验证
 │   ├── src/
 │   │   └── web/                    # Nuxt.js 网页查看器
 │   │       ├── components/         # Vue 组件

@@ -99,6 +99,12 @@ Output includes:
 * codeLinks
 * tags (generated in Step 2.5)
 
+Create the paper folder:
+
+```bash
+mkdir -p ./.skill/claude-papers/papers/{paper-slug}
+```
+
 Save to:
 
 ```
